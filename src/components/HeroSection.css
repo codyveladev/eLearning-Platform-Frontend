@@ -1,5 +1,5 @@
 .hero-container {
-  background: url('/images/elearning.jpg')
+  background: url('../images/elearning.jpg')
   center center/cover no-repeat;
   height: 100vh;
   width: 100%;
