@@ -20,9 +20,11 @@ export default function Login() {
                   <Form.Control size="lg" type="password"></Form.Control>
                 </Row>
                 <Row className="pt-3">
-                  <Button className="px-4" variant="primary" type="submit">
-                    Log In
-                  </Button>
+                  <Link to="/main-page">
+                    <Button className="px-4" variant="primary" type="submit">
+                      Log In
+                    </Button>
+                  </Link>
                 </Row>
               </Form.Group>
             </Form>
