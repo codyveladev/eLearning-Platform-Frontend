@@ -9,7 +9,7 @@ function MainPage () {
       <CourseSelect />
       <Footer />
     </div>
-  )
+  );
 }
 
 export default MainPage
