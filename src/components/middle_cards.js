@@ -6,21 +6,21 @@ import CardItem from './CardItem';
 function recipe_cards() {
   return (
     <div className='cards'>
-      <h1>Breakfast</h1>
+      <h1>example</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              src='https://www.hdwallpapers.in/download/food_strawberry_pie_4k_hd-HD.jpg'
+              src='n/a'
               text=''
-              label='Dessert'
-              path='/recipes'
+              label='elearning_image'
+              path='/services'
             />
             <CardItem
               src=''
               text=''
-              label='Savory'
-              path='/recipes'
+              label='elearning_image'
+              path='/services'
             />
           </ul>
         </div>
