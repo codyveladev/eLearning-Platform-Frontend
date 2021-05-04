@@ -34,7 +34,7 @@ export default function SignUp() {
       try {
         //Make a post request to the API to register the user
         let res = await axios.post(
-          "http://localhost:8080/users/register",
+          "http://localhost:8080/api/users/register",
           data
         );
         //Display success message
