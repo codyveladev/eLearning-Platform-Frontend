@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../actions/userActions";
 import "./Navbar.css";
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
+  //For login and navbar changes
+  const history = useHistory();
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
+  
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -20,6 +24,11 @@ function Navbar() {
     } else {
       setButton(true);
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    history.push("./login");
   };
 
   useEffect(() => {
@@ -40,18 +49,17 @@ function Navbar() {
           </div>
           {userInfo ? (
             <>
-            
               <ul className={click ? "nav-menu active" : "nav-menu"}>
                 <li className="nav-item">
-                  <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                  <span className="nav-links">
                     Welcome, {userInfo.firstName}!
-                  </Link>
+                  </span>
                 </li>
                 <li>
                   <Link
                     to="/login"
                     className="nav-links"
-                    onClick={closeMobileMenu}
+                    onClick={handleLogout}
                   >
                     Logout
                   </Link>

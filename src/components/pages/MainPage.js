@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 // import CourseSelect from "../CourseSelect";
-import {Container} from 'react-bootstrap'
-import CourseDisplay from '../CourseDisplay';
+import Navbar from "../Navbar";
+import { Container } from "react-bootstrap";
+import CourseDisplay from "../CourseDisplay";
 import Footer from "../Footer";
 
 import { listCourses } from "../../actions/courseActions";
@@ -26,28 +27,31 @@ function MainPage() {
     dispatch(listCourses(userInfo.token));
   }, []);
   return (
-    <div>
-      {error && <Message variant="danger" msg={error} title="error" />}
-      {loading && <Loader />}
-      <Container className="overflow-y">
-        {courses &&
-          courses.map((course) => {
-            return (
-              <>
-                <CourseDisplay
-                  title={course.title}
-                  description={course.description}
-                  image={course.thumbnail}
-                  author={course.instructor.userName}
-                />
-              </>
-            );
-          })}
-      </Container>
+    <>
+      <Navbar />
+      <div>
+        {error && <Message variant="danger" msg={error} title="error" />}
+        {loading && <Loader />}
+        <Container className="overflow-y">
+          {courses &&
+            courses.map((course) => {
+              return (
+                <>
+                  <CourseDisplay
+                    title={course.title}
+                    description={course.description}
+                    image={course.thumbnail}
+                    author={course.instructor.userName}
+                  />
+                </>
+              );
+            })}
+        </Container>
 
-      {/* <CourseSelect /> */}
-      <Footer />
-    </div>
+        {/* <CourseSelect /> */}
+        <Footer />
+      </div>
+    </>
   );
 }
 

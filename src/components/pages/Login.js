@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Button, Form } from "react-bootstrap";
+import { Container, Row, Button, Form, Breadcrumb } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../../actions/userActions";
@@ -28,9 +28,13 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <Container>
-        <h2 className="display-4 text-center pt-4">Log In</h2>
+    <div className="form-bg">
+      <Container className="bg-white border mt-5 pb-5">
+        <Breadcrumb fluid>
+          <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+          <Breadcrumb.Item active>Login</Breadcrumb.Item>
+        </Breadcrumb>
+        <h4 className="display-4 text-center pt-3">Log In</h4>
         {console.log(userLogin.userInfo)}
         {error && <Message variant="danger" title="Whoops..." msg={error} />}
         {loading && <Loader />}
