@@ -4,31 +4,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../../actions/userActions";
 import { useForm } from "react-hook-form";
+import Message from "../Message";
+import Loader from "../Loader"
 
 export default function Login() {
   const { register, handleSubmit, errors } = useForm();
-  
+
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-  
+
   const history = useHistory();
 
   useEffect(() => {
     if (userInfo) {
       history.push("/main-page");
     }
-  });
+  }, [userInfo, history]);
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    dispatch(login(data.userName, data.password))
+    dispatch(login(data.userName, data.password));
   };
 
   return (
     <div>
       <Container>
         <h2 className="display-4 text-center pt-4">Log In</h2>
+        {console.log(userLogin.userInfo)}
+        {error && <Message variant="danger" title="Whoops..." msg={error} />}
+        {loading && <Loader />}
         <Container className="d-flex justify-content-center pt-3">
           <div className="border shadow-sm py-4 px-5">
             <Form onSubmit={handleSubmit(onSubmit)}>

@@ -6,14 +6,10 @@ import {
 } from "../constants/userConstants";
 
 import axios from "axios";
+
 export const login = (userName, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
 
     const { data } = await axios.post(
       "http://localhost:8080/api/users/login",
@@ -21,12 +17,13 @@ export const login = (userName, password) => async (dispatch) => {
         userName,
         password,
       },
-      config
     );
+
+    console.log(data)
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
-    dispatch({ type: USER_LOGIN_FAIL, payload: error });
-    console.log(error);
+    console.log(error.response.data)
+    dispatch({ type: USER_LOGIN_FAIL, payload: error.response.data });
   }
 };
