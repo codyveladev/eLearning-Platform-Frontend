@@ -38,19 +38,47 @@ function Navbar() {
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
-                Login
-              </Link>
-            </li>
-          </ul>
-          {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+          {userInfo ? (
+            <>
+            
+              <ul className={click ? "nav-menu active" : "nav-menu"}>
+                <li className="nav-item">
+                  <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                    Welcome, {userInfo.firstName}!
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/login"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <ul className={click ? "nav-menu active" : "nav-menu"}>
+                <li className="nav-item">
+                  <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/login"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
+                    Login
+                  </Link>
+                </li>
+              </ul>
+              <Button buttonStyle="btn--outline">SIGN UP</Button>
+            </>
+          )}
         </div>
       </nav>
     </div>

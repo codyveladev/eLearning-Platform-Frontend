@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import "../../App.css";
-import CourseSelect from "../CourseSelect";
+// import CourseSelect from "../CourseSelect";
+import {Container} from 'react-bootstrap'
+import CourseDisplay from '../CourseDisplay';
 import Footer from "../Footer";
 
 import { listCourses } from "../../actions/courseActions";
@@ -26,18 +27,24 @@ function MainPage() {
   }, []);
   return (
     <div>
-      {error && <Message variant="danger" msg={error} title="error"/>}
+      {error && <Message variant="danger" msg={error} title="error" />}
       {loading && <Loader />}
-      {courses &&
-        courses.map((course) => {
-          return (
-            <>
-              <h1>{course.title}</h1>
-              <p>{course.description}</p>
-              <a>{course._id}</a>
-            </>
-          );
-        })}
+      <Container className="overflow-y">
+        {courses &&
+          courses.map((course) => {
+            return (
+              <>
+                <CourseDisplay
+                  title={course.title}
+                  description={course.description}
+                  image={course.thumbnail}
+                  author={course.instructor.userName}
+                />
+              </>
+            );
+          })}
+      </Container>
+
       {/* <CourseSelect /> */}
       <Footer />
     </div>
