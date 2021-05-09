@@ -3,9 +3,10 @@ import { Button } from "./Button";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
+import Search from "./Search";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ search }) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -14,7 +15,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  
+
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -39,17 +40,22 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar align-items-center">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            ELearning
-          </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
-          {userInfo ? (
-            <>
+      {userInfo ? (
+        <>
+          <nav className="navbar align-items-center">
+            <div className="navbar-container">
+              <Link
+                to="/main-page"
+                className="navbar-logo"
+                onClick={closeMobileMenu}
+              >
+                ELearning
+              </Link>
+              <div className="menu-icon" onClick={handleClick}>
+                <i className={click ? "fas fa-times" : "fas fa-bars"} />
+              </div>
               <ul className={click ? "nav-menu active" : "nav-menu"}>
+                {search ? <Search token={userInfo.token} />: <> </>}
                 <li className="nav-item">
                   <span className="nav-links">
                     Welcome, {userInfo.firstName}!
@@ -65,9 +71,19 @@ function Navbar() {
                   </Link>
                 </li>
               </ul>
-            </>
-          ) : (
-            <>
+            </div>
+          </nav>
+        </>
+      ) : (
+        <>
+          <nav className="navbar align-items-center">
+            <div className="navbar-container">
+              <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                ELearning
+              </Link>
+              <div className="menu-icon" onClick={handleClick}>
+                <i className={click ? "fas fa-times" : "fas fa-bars"} />
+              </div>
               <ul className={click ? "nav-menu active" : "nav-menu"}>
                 <li className="nav-item">
                   <Link to="/" className="nav-links" onClick={closeMobileMenu}>
@@ -85,10 +101,10 @@ function Navbar() {
                 </li>
               </ul>
               <Button buttonStyle="btn--outline">SIGN UP</Button>
-            </>
-          )}
-        </div>
-      </nav>
+            </div>
+          </nav>
+        </>
+      )}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Home from './components/pages/Home';
 import SignUp from './components/pages/SignUp';
 import Login from "./components/pages/Login";
 import MainPage from './components/pages/MainPage';
+import CourseView from './components/pages/CourseView';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path='/sign-up' component={SignUp} />
             <Route path='/login' component={Login}/>
             <Route path='/main-page' component={MainPage}/>
+            <Route path='/course/:id' component={CourseView} exact/>
           </Switch>
         </Router>
       </div>

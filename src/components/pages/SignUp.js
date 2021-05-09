@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../App.css";
-import { Container, Form, Col, Row, Button, Alert } from "react-bootstrap";
+import { Container, Form, Col, Row, Button, Alert, Breadcrumb } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 const axios = require("axios");
@@ -62,7 +62,11 @@ export default function SignUp() {
   };
 
   return (
-    <Container fluid className="pb-5">
+    <Container className="bg-white border my-3 pb-5">
+      <Breadcrumb fluid>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item active>Sign-up</Breadcrumb.Item>
+      </Breadcrumb>
       <h2 className="display-4 text-center pt-3">Sign Up</h2>
       {/* Error message  */}
       {showError ? (

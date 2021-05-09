@@ -1,10 +1,11 @@
 import React from "react";
 import { Row, Col, Image, Container, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom' 
 
-const CourseDisplay = ({ title, image, description, author }) => {
+const CourseDisplay = ({ id, title, image, description, author }) => {
   return (
     <>
-      <Container className="border shadow my-4">
+      <Container className="border shadow mt-4">
         <Row className="py-4">
           <Col md={4}>
             <Container className="border">
@@ -20,9 +21,11 @@ const CourseDisplay = ({ title, image, description, author }) => {
             <h2>{title}</h2>
             <p>{description}</p>
             <p>Created by: {author}</p>
-            <Button variant="outline-success" size="lg">
-              Start Learning
-            </Button>
+            <Link to={`/course/${id}`}>
+              <Button variant="outline-success" size="lg">
+                Start Learning
+              </Button>
+            </Link>
           </Col>
         </Row>
       </Container>

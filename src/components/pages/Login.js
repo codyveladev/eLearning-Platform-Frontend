@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <div className="form-bg">
+    <div>
       <Container className="bg-white border mt-5 pb-5">
         <Breadcrumb fluid>
           <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
