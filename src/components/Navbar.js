@@ -49,13 +49,13 @@ function Navbar({ search }) {
                 className="navbar-logo"
                 onClick={closeMobileMenu}
               >
-                ELearning
+                ELearning <i class="fas fa-chalkboard-teacher" />
               </Link>
               <div className="menu-icon" onClick={handleClick}>
                 <i className={click ? "fas fa-times" : "fas fa-bars"} />
               </div>
               <ul className={click ? "nav-menu active" : "nav-menu"}>
-                {search ? <Search token={userInfo.token} />: <> </>}
+                {search ? <Search token={userInfo.token} /> : <> </>}
                 <li className="nav-item">
                   <span className="nav-links">
                     Welcome, {userInfo.firstName}!
@@ -67,7 +67,7 @@ function Navbar({ search }) {
                     className="nav-links"
                     onClick={handleLogout}
                   >
-                    Logout
+                    Logout{"  "}<i class="fas fa-sign-out-alt"></i>
                   </Link>
                 </li>
               </ul>
@@ -79,7 +79,7 @@ function Navbar({ search }) {
           <nav className="navbar align-items-center">
             <div className="navbar-container">
               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-                ELearning
+                ELearning <i class="fas fa-chalkboard-teacher" />
               </Link>
               <div className="menu-icon" onClick={handleClick}>
                 <i className={click ? "fas fa-times" : "fas fa-bars"} />

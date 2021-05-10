@@ -34,11 +34,11 @@ const CourseView = () => {
                 </Button>
               </Link>
               <Link to={`/course/${id}/quiz`} className="ml-auto">
-                <Button variant="outline-success">Start Quiz</Button>
+                <Button variant="outline-primary">Start Quiz</Button>
               </Link>
             </Container>
             <Container className="pb-5">
-              <Card className="pt-3">
+              <Card className="shadow pt-3">
                 <h1>{course.title}</h1>
                 <Card.Body className="text-center">
                   <iframe

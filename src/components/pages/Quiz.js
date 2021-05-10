@@ -56,7 +56,7 @@ const Quiz = () => {
     if (score === "FAIL") {
       setModalMsg({
         title: "You failed!",
-        msg: "Dont worry go back and try again!",
+        msg: "Dont worry go back to course and learn more!",
         link: `/course/${course._id}`,
         buttonMsg: "Go Back to Course",
       });
@@ -66,7 +66,7 @@ const Quiz = () => {
         title: "You Passsed!",
         msg: `Congratulations you passed the course ${course.title}!`,
         link: `/main-page`,
-        buttonMsg: "Learn More",
+        buttonMsg: "Go back to main page",
       });
       handleShow();
     }
