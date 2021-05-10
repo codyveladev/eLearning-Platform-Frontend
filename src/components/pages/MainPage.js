@@ -32,7 +32,7 @@ function MainPage() {
       <div class="bg">
         {error && <Message variant="danger" msg={error} title="error" />}
         {loading && <Loader />}
-        <Container className="pt-3">
+        <Container className="py-3">
           {courses &&
             courses.map((course) => {
               return (

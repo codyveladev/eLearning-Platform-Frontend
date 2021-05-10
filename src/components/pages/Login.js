@@ -19,6 +19,7 @@ export default function Login() {
   useEffect(() => {
     if (userInfo) {
       history.push("/main-page");
+      return
     }
   }, [userInfo, history]);
 
@@ -28,7 +29,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="form-bg">
       <Container className="bg-white border mt-5 pb-5">
         <Breadcrumb fluid>
           <Breadcrumb.Item href="/">Home</Breadcrumb.Item>

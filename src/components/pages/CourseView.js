@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Loader from "../Loader";
@@ -17,8 +17,6 @@ const CourseView = () => {
   const { loading, error, course } = courseDetail;
 
   useEffect(() => {
-    console.log(user.token);
-    console.log(id);
     dispatch(courseDetails(id, user.token));
   }, []);
   return (
@@ -35,13 +33,12 @@ const CourseView = () => {
                   Go Back
                 </Button>
               </Link>
-
-              <Button variant="outline-success" className="ml-auto">
-                Start Quiz
-              </Button>
+              <Link to={`/course/${id}/quiz`} className="ml-auto">
+                <Button variant="outline-success">Start Quiz</Button>
+              </Link>
             </Container>
             <Container className="pb-5">
-              <Card>
+              <Card className="pt-3">
                 <h1>{course.title}</h1>
                 <Card.Body className="text-center">
                   <iframe

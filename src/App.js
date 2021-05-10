@@ -8,6 +8,7 @@ import SignUp from './components/pages/SignUp';
 import Login from "./components/pages/Login";
 import MainPage from './components/pages/MainPage';
 import CourseView from './components/pages/CourseView';
+import Quiz from './components/pages/Quiz';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path='/login' component={Login}/>
             <Route path='/main-page' component={MainPage}/>
             <Route path='/course/:id' component={CourseView} exact/>
+            <Route path='/course/:id/quiz' component={Quiz} exact/>
           </Switch>
         </Router>
       </div>
