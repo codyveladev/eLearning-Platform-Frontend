@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { courseDetails } from "../../actions/courseActions";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Navbar";
+import Modal from "../ModalNotification";
 import Loader from "../Loader";
 import Message from "../Message";
 import { Container, Row, Form, Button, Card } from "react-bootstrap";
@@ -18,6 +19,12 @@ const Quiz = () => {
   const courseDetail = useSelector((state) => state.courseDetail);
   const { loading, error, course } = courseDetail;
 
+  //Modal
+  const [show, setShow] = useState(false);
+  const [modalMsg, setModalMsg] = useState({});
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     dispatch(courseDetails(id, user.token));
   }, []);
@@ -27,7 +34,6 @@ const Quiz = () => {
       quizId,
       userAns: answers,
     };
-    
     let axiosConfig = {
       headers: {
         Authorization: "Bearer " + user.token,
@@ -43,11 +49,27 @@ const Quiz = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     let ans = Object.values(data);
-    console.log(ans);
     let score = await fetchScoreQuiz(course.quiz._id, ans);
     console.log(score);
+
+    if (score === "FAIL") {
+      setModalMsg({
+        title: "You failed!",
+        msg: "Dont worry go back and try again!",
+        link: `/course/${course._id}`,
+        buttonMsg: "Go Back to Course",
+      });
+      handleShow();
+    } else {
+      setModalMsg({
+        title: "You Passsed!",
+        msg: `Congratulations you passed the course ${course.title}!`,
+        link: `/main-page`,
+        buttonMsg: "Learn More",
+      });
+      handleShow();
+    }
   };
 
   return (
@@ -55,6 +77,17 @@ const Quiz = () => {
       <Navbar search={false} />
       {loading && <Loader />}
       {error && <Message title="error" variant="danger" msg={error} />}
+      {
+        <Modal
+          show={show}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          title={modalMsg.title}
+          msg={modalMsg.msg}
+          link={modalMsg.link}
+          buttonMsg={modalMsg.buttonMsg}
+        />
+      }
       <Container>
         <Container className="p-4">
           <Form onSubmit={handleSubmit(onSubmit)}>
