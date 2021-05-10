@@ -14,3 +14,22 @@
   font-size: 3rem;
 }
 
+.form-bg{
+  position: absolute;
+  top: 0px;
+  background-color: #1A8F87;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.bg {
+  background-color: #FAFAFA;
+}
+
+.form-bg {
+  background-color: #FAFAFA;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}

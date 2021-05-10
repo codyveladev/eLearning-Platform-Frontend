@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import'../App.css';
 import './CourseSelect.css';
 import CardItem from './CardItem';
 
 
+
+
 function CourseSelect() {
+
     return(
         <div className='course-container'>
           <h1>Get started by choosing a subject</h1>
